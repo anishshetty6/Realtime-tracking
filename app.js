@@ -15,6 +15,9 @@ io.on("connection", function (socket) {
         io.emit("receive-location",{id:socket.id,...data});
     })
     console.log("connected");
+    socket.on("user-disconnected", function () {
+        io.emit("user disconnected", socket.id);
+    })
 });
 
 app.get("/", function (req, res) {
