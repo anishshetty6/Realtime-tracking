@@ -1,16 +1,23 @@
-const express=require ('express')
-const app=express()
-const http=require("http")
-const socketio=require("socket.io")
+const express = require('express');
+const app = express();
+const path = require('path');
+const http = require('http');
+const socketio = require('socket.io');
 
-const server=http.createServer(app);
-const io=socketio(server);
+const server = http.createServer(app);
+const io = socketio(server);
 
-app.set("view engine","ejs");
-app.get(express.static(path.join(__dirname,"public")));
+app.set("view engine", "ejs");
+app.use('/static', express.static(path.join(process.cwd(), "public")));
 
-app.get("/",function(req,res){
-    res.send("hi")
-})
+io.on("connection", function(socket) {
+    console.log("connected");
+});
 
-server.listen(3000);
+app.get("/", function(req, res) {
+    res.render("index.ejs");
+});
+
+server.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
+});
