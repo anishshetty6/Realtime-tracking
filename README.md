@@ -59,6 +59,6 @@ Realtime Device Track is a web application that enables real-time tracking of de
 
 For any questions or suggestions, feel free to reach out to:
 
-- **Name:** [Anish Shetty]
+- **Name:** Anish Shetty
 - **Email:** [anishshetty2708@gmail.com]
-- **GitHub:** [https://github.com/yourusername](https://github.com/anishshetty6)
+- **GitHub:** [https://github.com/anishshetty6](https://github.com/anishshetty6)
