@@ -1,4 +1,4 @@
-# Realtime Device Track
+# Realtime Device Tracking
 
 A real-time device tracking system using Node.js, Express, Socket.IO, and Leaflet. This project allows you to track and display the location of devices on a map in real-time.
 
