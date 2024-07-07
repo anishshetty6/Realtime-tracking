@@ -10,11 +10,14 @@ const io = socketio(server);
 app.set("view engine", "ejs");
 app.use('/static', express.static(path.join(process.cwd(), "public")));
 
-io.on("connection", function(socket) {
+io.on("connection", function (socket) {
+    socket.on("send-location",function(data){
+        io.emit("receive-location",{id:socket.id,...data});
+    })
     console.log("connected");
 });
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
     res.render("index.ejs");
 });
 

@@ -1,3 +1,29 @@
 const socket=io();
 
-console.log("hoi");
+if(navigator.geolocation){
+    navigator.geolocation.watchPosition((position)=>{
+       const{latitude,longitude}= position.coords;
+       socket.emit("send-location",{latitude,longitude});
+    },(error)=>{
+        console.log(error);
+    },
+    {
+        enableHighAccuracy:true,
+        maximumAge:0,
+        timeout:5000,
+    }
+);
+}
+
+const map=L.map("map").setView([0, 0], 5);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
+    attribution: '<a href="https://github.com/anishshetty6" target="_blank">anishshetty6</a>',
+}).addTo(map)
+
+const markers={}
+
+socket.on("receive-location",(data)=>{
+    const{id,latitude,longitude}=data;
+    map.setView([latitude,longitude],15);
+});
